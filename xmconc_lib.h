@@ -144,6 +144,9 @@ void xmconc_call(int t, char *f) {
 		stack[t][stackptr[t]] = stack[t][stackptr[t] - 1];
 		stackptr[t]++;
 	}
+	/* drop */
+	else if(strcmp(f, "drop") == 0)
+		stackptr[t]--;
 	/* ЗАГРУЗКА И СОХРАНЕНИЕ В ПАМЯТЬ */
 	else if(strcmp(f, ".") == 0) {
 		stack[t][stackptr[t] - 1] = mem[stack[t][stackptr[t] - 1]];
