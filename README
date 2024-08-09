@@ -1,0 +1,9 @@
+Сначала, получите ``xmconcc.py``:
+
+	wget https://codeberg.org/downadow/xmconcc/raw/master/xmconcc.py
+
+Теперь можно использовать ``compiler.py``.
+
+
+
+Этот файл и ``.gitignore`` доступны по лицензии CC-0 (см. <https://freedomdefined.org/Licenses/CC-0>).
