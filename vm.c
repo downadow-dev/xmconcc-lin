@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
 	
 	memset(mem, '\0', MEM_LEN * sizeof(*mem));
 	
-	for(int i = 0; i < 100; i++) {
+	for(int i = 0; i < 1024; i++) {
 		stack[0][i] = 0;
 		stack[1][i] = 0;
 	}
