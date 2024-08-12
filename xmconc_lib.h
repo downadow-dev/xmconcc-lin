@@ -217,6 +217,21 @@ void xmconc_call(int t, char *f) {
 			stack[t][stackptr[t]++] = 0;
 	}
 	
+	else if(strcmp(f, "?") == 0) {
+		stackptr[t] -= 2;
+		if(stack[t][stackptr[t]] == 1 && stack[t][stackptr[t] + 1] == 1)
+			stack[t][stackptr[t]++] = 1;
+		else
+			stack[t][stackptr[t]++] = 0;
+	}
+	else if(strcmp(f, "|?") == 0) {
+		stackptr[t] -= 2;
+		if(stack[t][stackptr[t]] == 1 || stack[t][stackptr[t] + 1] == 1)
+			stack[t][stackptr[t]++] = 1;
+		else
+			stack[t][stackptr[t]++] = 0;
+	}
+	
 	else if(strcmp(f, "then") == 0) {
 		if(stack[t][stackptr[t] - 2] == 1)
 			pc[t] = stack[t][stackptr[t] - 1] - 1;
