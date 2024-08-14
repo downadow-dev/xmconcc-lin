@@ -231,6 +231,9 @@ void xmconc_call(int t, char *f) {
 		else
 			stack[t][stackptr[t]++] = 0;
 	}
+	else if(strcmp(f, "!") == 0) {
+		stack[t][stackptr[t] - 1] = (stack[t][stackptr[t] - 1] == 0 ? 1 : 0);
+	}
 	
 	else if(strcmp(f, "then") == 0) {
 		if(stack[t][stackptr[t] - 2] == 1)
