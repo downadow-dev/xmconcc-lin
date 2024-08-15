@@ -255,6 +255,11 @@ void xmconc_call(int t, char *f) {
 	/* halt */
 	else if(strcmp(f, "halt") == 0)
 		pc[t] = MEM_LEN;
+	/* save_stack_ptr и load_stack_ptr */
+	else if(strcmp(f, "save_stack_ptr") == 0)
+	    mem[stack[t][stackptr[t] - 1]] = stackptr[t] - 1;
+	else if(strcmp(f, "load_stack_ptr") == 0)
+	    stackptr[t] = mem[stack[t][stackptr[t] - 1]];
 	/* setcolor и setbg */
 	else if(strcmp(f, "setcolor") == 0 && stack[t][stackptr[t] - 1] == 1 /* белый */)
 		printf("\033[97m ");

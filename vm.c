@@ -12,7 +12,7 @@
 
 static char args[127];
 
-static int stack[2][1024];
+static int stack[2][25000];
 static int stackptr[2];
 #define MEM_LEN    8700000
 static int *mem;
