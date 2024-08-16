@@ -302,6 +302,13 @@ void xmconc_call(int t, char *f) {
 		
 		stack[t][stackptr[t]++] = tmp;
 	}
+	
+	/********************************
+	 ********************************/
+    else {
+        fprintf(stderr, "Ошибка библиотеки\n");
+        exit(31);
+    }
 }
 
 #endif
