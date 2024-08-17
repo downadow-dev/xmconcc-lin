@@ -290,18 +290,6 @@ void xmconc_call(int t, char *f) {
 		pthread_t t1;
 		pthread_create(&t1, NULL, create_thread1, NULL);
 	}
-	/* memcmp */
-	else if(strcmp(f, "memcmp") == 0) {
-		size_t size = stack[t][--stackptr[t]];
-		int addr2 = stack[t][--stackptr[t]];
-		int addr1 = stack[t][--stackptr[t]];
-		
-		int tmp = 0;
-		for(int i = 0; i < size; i++)
-			tmp += mem[addr1 + i] - mem[addr2 + i];
-		
-		stack[t][stackptr[t]++] = tmp;
-	}
 	
 	/********************************
 	 ********************************/
