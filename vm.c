@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 	
 	int program[] = PROGRAM_CODE;
 	
-	mem = malloc(MEM_LEN * sizeof(*mem));
+	mem = (int *) malloc(MEM_LEN * sizeof(*mem));
 	
 	memset(mem, '\0', MEM_LEN * sizeof(*mem));
 	
