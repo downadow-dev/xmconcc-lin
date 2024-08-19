@@ -75,7 +75,7 @@ void xmconc_call(int t, char *f) {
 		pc[t] = stack[t][--stackptr[t]] - 1;
 	/* getc */
 	else if(strcmp(f, "getc") == 0)
-		stack[t][stackptr[t]++] = getchar();
+		stack[t][stackptr[t]++] = getwchar();
 	/* getuid */
 	else if(strcmp(f, "getuid") == 0)
 		stack[t][stackptr[t]++] = getuid();
