@@ -13,6 +13,7 @@
 #include <time.h>
 #include <stdbool.h>
 #include <pthread.h>
+#include <wchar.h>
 
 static bool clear_color = false;
 
@@ -40,6 +41,15 @@ void xmconc_call(int t, char *f) {
 		fflush(stdout);
 	}
 	/* putc */
+	else if(strcmp(f, "putc") == 0 && stack[t][stackptr[t] - 1] > 127) {
+	    char buf[MB_CUR_MAX + 1];
+	    memset(buf, '\0', MB_CUR_MAX + 1);
+	    wctomb(buf, stack[t][--stackptr[t]]);
+	    
+		printf("%s", buf);
+		
+		fflush(stdout);
+	}
 	else if(strcmp(f, "putc") == 0) {
 		putchar(stack[t][--stackptr[t]]);
 		fflush(stdout);
