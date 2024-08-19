@@ -9,6 +9,8 @@
 
 #include "forschar.h"
 #include <string.h>
+#include <wchar.h>
+#include <locale.h>
 
 static char args[127];
 
@@ -54,6 +56,8 @@ void mem_exec(int t) {
 
 
 int main(int argc, char **argv) {
+    setlocale(LC_ALL, getenv("LANG"));
+    
 	for(int i = 0; i < sizeof(args); i++)
 		args[i] = '\0';
 	
@@ -89,6 +93,10 @@ int main(int argc, char **argv) {
 	for(int i = 0; i < (sizeof(program) / sizeof(*program)); i++)
 		mem[i] = program[i];
 	
+#ifdef PROG_DBG
+	fprintf(stderr, "*** size: %d\n", (sizeof(program) / sizeof(*program)));
+#endif
+    
 	disable_input_buffering();
 	atexit(&restore_input_buffering);
 	

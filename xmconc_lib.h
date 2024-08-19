@@ -17,6 +17,9 @@
 static bool clear_color = false;
 
 void *create_thread1() {
+#ifdef PROG_DBG
+    fprintf(stderr, "*** thread 1 is started\n");
+#endif
 	mem_exec(1);
 }
 
@@ -37,8 +40,12 @@ void xmconc_call(int t, char *f) {
 		fflush(stdout);
 	}
 	/* putc */
-	else if(strcmp(f, "putc") == 0) {
+	else if(strcmp(f, "putc") == 0 && (stack[t][stackptr[t] - 1] >= 0 && stack[t][stackptr[t] - 1] <= 127)) {
 		putchar(stack[t][--stackptr[t]]);
+		fflush(stdout);
+	}
+	else if(strcmp(f, "putc") == 0) {
+		putwchar(stack[t][--stackptr[t]]);
 		fflush(stdout);
 	}
 	/* exit */
@@ -250,6 +257,9 @@ void xmconc_call(int t, char *f) {
 		stackptr[t] -= 6;
 		char buf[10];
 		snprintf(buf, sizeof(buf), "%d%d%d%d%d%d", stack[t][stackptr[t]], stack[t][stackptr[t] + 1], stack[t][stackptr[t] + 2], stack[t][stackptr[t] + 3], stack[t][stackptr[t] + 4], stack[t][stackptr[t] + 5]);
+#ifdef PROG_DBG
+        fprintf(stderr, "*** cat result: ``%s``\n", buf);
+#endif
 		stack[t][stackptr[t]++] = atoi(buf);
 	}
 	/* halt */
@@ -295,6 +305,9 @@ void xmconc_call(int t, char *f) {
 	 ********************************/
     else {
         fprintf(stderr, "Ошибка библиотеки\n");
+#ifdef PROG_DBG
+        fprintf(stderr, "*** (unknown ``%s``)\n", f);
+#endif
         exit(31);
     }
 }

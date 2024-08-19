@@ -10,8 +10,13 @@ from xmconcc import *
 from os import system
 
 if len(sys.argv) == 1:
-	print('usage:  ./compiler.py INCLUDE_PATH IN_FILE OUT_FILE', file=sys.stderr)
+	print('usage:  ./compiler.py INCLUDE_PATH IN_FILE OUT_FILE [-debug]', file=sys.stderr)
 	exit(1)
+
+debug = False
+for i in range(len(sys.argv[1:])):
+    if sys.argv[1:][i] == '-debug':
+        debug = True
 
 f = open(sys.argv[2], 'r')
 tree = maketree(preprocess(sys.argv[1], f.read()))
@@ -63,7 +68,12 @@ f.write('#define PROGRAM_CODE {');
 for obj in result:
 	f.write(str(obj) + ', ')
 f.write('}\n')
+
+if debug:
+    f.write("#define PROG_DBG   1\n");
+
 f.close()
 
-system('gcc -o \'' + sys.argv[3].replace('\'', '\\\'') + '\' vm.c -lm -pthread')
+system('gcc ' + ('-ggdb' if debug else '') + ' -o \'' \
+    + sys.argv[3].replace('\'', '\\\'') + '\' vm.c -lm -pthread')
 system('rm program_code.h')
