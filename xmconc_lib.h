@@ -42,12 +42,7 @@ void xmconc_call(int t, char *f) {
 	}
 	/* putc */
 	else if(strcmp(f, "putc") == 0 && stack[t][stackptr[t] - 1] > 127) {
-	    char buf[MB_CUR_MAX + 1];
-	    memset(buf, '\0', MB_CUR_MAX + 1);
-	    wctomb(buf, stack[t][--stackptr[t]]);
-	    
-		printf("%s", buf);
-		
+		printf("%lc", stack[t][--stackptr[t]]);
 		fflush(stdout);
 	}
 	else if(strcmp(f, "putc") == 0) {
