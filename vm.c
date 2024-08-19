@@ -9,8 +9,6 @@
 
 #include "forschar.h"
 #include <string.h>
-#include <wchar.h>
-#include <locale.h>
 
 static char args[127];
 
@@ -56,8 +54,6 @@ void mem_exec(int t) {
 
 
 int main(int argc, char **argv) {
-    setlocale(LC_ALL, getenv("LANG"));
-    
 	for(int i = 0; i < sizeof(args); i++)
 		args[i] = '\0';
 	

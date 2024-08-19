@@ -40,12 +40,8 @@ void xmconc_call(int t, char *f) {
 		fflush(stdout);
 	}
 	/* putc */
-	else if(strcmp(f, "putc") == 0 && (stack[t][stackptr[t] - 1] >= 0 && stack[t][stackptr[t] - 1] <= 127)) {
-		putchar(stack[t][--stackptr[t]]);
-		fflush(stdout);
-	}
 	else if(strcmp(f, "putc") == 0) {
-		putwchar(stack[t][--stackptr[t]]);
+		putchar(stack[t][--stackptr[t]]);
 		fflush(stdout);
 	}
 	/* exit */
