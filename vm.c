@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
 	int iii = 0;
 	for(int i = 1; i < argc; i++) {
 		for(int ii = 0; argv[i][ii] != '\0' && iii < sizeof(args); ii++, iii++) {
-			args[iii] = argv[i][ii];
+			args[iii] = (argv[i][ii] != ' ' ? argv[i][ii] : '\r');
 		}
 		if(i < argc - 1)
 			args[iii++] = ' ';
