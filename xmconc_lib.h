@@ -65,6 +65,11 @@ void xmconc_call(int t, char *f) {
 		putchar('\b');
 		fflush(stdout);
 	}
+	/* cr */
+	else if(strcmp(f, "cr") == 0) {
+		putchar('\r');
+		fflush(stdout);
+	}
 	/* goto */
 	else if(strcmp(f, "goto") == 0 || strcmp(f, "gnu_code") == 0)
 		pc[t] = stack[t][--stackptr[t]] - 1;
