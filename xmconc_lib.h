@@ -77,6 +77,16 @@ void xmconc_call(int t, char *f) {
         for(int i = stack[t][stackptr[t]]; i < stack[t][stackptr[t]] + stack[t][stackptr[t] + 2]; i++)
             mem[i] = stack[t][stackptr[t] + 1];
         
+        stackptr[t]++;
+	}
+	/* memcpy */
+	else if(strcmp(f, "memcpy") == 0) {
+	    stackptr[t] -= 3;
+	    
+        for(int i = 0; i < stack[t][stackptr[t] + 2]; i++)
+            mem[stack[t][stackptr[t]] + i] = mem[stack[t][stackptr[t] + 1] + i];
+        
+        stackptr[t]++;
 	}
 	/* goto */
 	else if(strcmp(f, "goto") == 0 || strcmp(f, "gnu_code") == 0)
