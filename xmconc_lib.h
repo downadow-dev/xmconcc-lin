@@ -70,6 +70,14 @@ void xmconc_call(int t, char *f) {
 		putchar('\r');
 		fflush(stdout);
 	}
+	/* memset */
+	else if(strcmp(f, "memset") == 0) {
+	    stackptr[t] -= 3;
+	    
+        for(int i = stack[t][stackptr[t]]; i < stack[t][stackptr[t]] + stack[t][stackptr[t] + 2]; i++)
+            mem[i] = stack[t][stackptr[t] + 1];
+        
+	}
 	/* goto */
 	else if(strcmp(f, "goto") == 0 || strcmp(f, "gnu_code") == 0)
 		pc[t] = stack[t][--stackptr[t]] - 1;
